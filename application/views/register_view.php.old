@@ -1,0 +1,74 @@
+<?php
+
+$notEqual = false;
+$errors    = [];  
+
+if (isset($_POST['submit'])) {
+    $login = $_POST['login'];
+    $password = $_POST['password'];
+    $password2 = $_POST['password2'];
+    $email = $_POST['email'];
+    $remember = isset($_POST['remember']);
+
+    // проверяем совпадение паролей
+    if ($password !== $password2) {
+        $notEqual = true;
+        // header("Location: register?notequal");
+        //exit();        
+    } else {
+
+        $usr = $user->addUser($login, $password, $email);
+        //var_dump($usr);
+
+        if (!$usr) {
+            $errors = $user->lastErrors;
+            //var_dump($errors);
+            //header("Location: register?error");
+            //exit();        
+        } else {
+            $usr = $user->logon($login, $password, $remember);
+            header("Location: /");
+            //exit();        
+        }
+        
+    }   
+}
+?>
+
+<div class="input-box login-box">
+    <div class="login-box-title">Регистрация</div>
+    <?php
+    //if (key_exists('notequal', $_REQUEST)) {
+        if ($notEqual) {
+    ?>
+        <div class="login-box-error">Ошибка повторного ввода пароля...</div>
+        <?php
+    //} elseif (key_exists('error', $_REQUEST)) {
+    } elseif ($errors) {
+        ?>
+            <div class="login-box-error">Регистрация не удалась из-за следующих проблем:<br><br>
+            <p class="login-box-note"><?php foreach ($errors as $error) { echo $error.'<br>'; } ?></p>
+            </div>
+        <?php
+    } else {
+        ?>
+            <div class="login-box-note">Или <a href="logon">войдите</a>, если Вы уже регистрировались</div>
+    <?php
+        
+    }
+    ?>
+    <form action="register" method="post" class="login-form">
+        <label for="login">Имя пользователя:</label>
+        <input name="login" type="text" placeholder="..." class="inpt" value="<?= (key_exists('login', $_REQUEST)) ? $_REQUEST['login'] : null ?>" required autofocus>
+        <label for="password">Пароль:</label>
+        <input name="password" type="password" placeholder="..." class="inpt" required>
+        <label for="password2">Повторите пароль:</label>
+        <input name="password2" type="password" placeholder="..." class="inpt" required>
+        <label for="email">Эл.почта:</label>
+        <input name="email" type="email" placeholder="user@email.ru" class="inpt">
+        <label for="remember">Запомнить меня:</label>
+        <input name="remember" class="inpt" type="checkbox" style="margin: 5px auto 5px 0; height: 20px;">
+        <input name="submit" type="submit" value="Регистрация" class="btn">
+        <input name="button" type="button" value="Отмена" onclick="location='/'" class="btn">
+    </form>
+</div>
