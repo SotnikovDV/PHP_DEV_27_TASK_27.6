@@ -42,7 +42,10 @@
             ?>
         </p>
         <hr>
-        <a href="/profile">Профиль пользователя</a>
+        <a href="/">Главная</a>'
+        <?php if ($login) {
+            echo '<a href="/profile">Профиль пользователя</a>';
+         } ?>
         <a href="/">Журнал ошибок</a>
     </aside>
     <main>

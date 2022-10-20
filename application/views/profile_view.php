@@ -25,6 +25,12 @@ if (isset($_SESSION['oauth'])){
         echo $key . ' = ' . $element . '<br>';
     }*/
 
+} else {
+    $first_name = '';
+    $last_name = '';
+    $screen_name = '';
+    $photo_big = null;
+    $bdate  = null;
 }
 /*    
     header("Location: /logon?errors=Для просмотра профиля пользователя, авторизуйтесь через VK");

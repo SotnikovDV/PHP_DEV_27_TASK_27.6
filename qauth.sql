@@ -25,9 +25,9 @@ CREATE TABLE `users` (
   `login` varchar(30) NOT NULL,
   `password` varchar(100) NOT NULL,
   `hash` varchar(100) NOT NULL DEFAULT '',
-  `vcuser` varchar(100) DEFAULT '',
-  `yuser` varchar(100) DEFAULT '',
-  `guser` varchar(100) DEFAULT '',
+  `vcuser` varchar(300) DEFAULT '',
+  `yuser` varchar(300) DEFAULT '',
+  `guser` varchar(300) DEFAULT '',
   PRIMARY KEY (`id`,`login`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 

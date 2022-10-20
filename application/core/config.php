@@ -3,7 +3,7 @@
 const DB_SERVER = 'localhost';
 const DB_NAME   = 'qauth'; 
 const DB_USER   = 'root';
-const DB_PASS   = 'DVSt1969-DB';
+const DB_PASS   = '';  //DVSt1969-DB
 // Параметры приложения VK
 const VK_CLIENT_ID      = '51449619'; // ID приложения
 const VK_CLIENT_SECRET  = 'ICYoAqm3ENPwYarEU398'; // Защищённый ключ
